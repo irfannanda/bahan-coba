@@ -6,11 +6,14 @@
   --muted: #52635d;
   --paper: #f5f3ec;
   --surface: #fffefa;
+  --header-bg: rgba(245, 243, 236, 0.94);
+  --contact-bg: #e8eee5;
   --green: #1e5548;
   --green-dark: #163d35;
   --lime: #d5e28f;
   --coral: #d66f51;
   --line: rgba(23, 43, 39, 0.14);
+  --card-hover-border: rgba(30, 85, 72, 0.45);
   font-family: "DM Sans", sans-serif;
   scroll-behavior: smooth;
 }
@@ -36,7 +39,7 @@ header {
   min-height: 76px;
   padding: 0 clamp(24px, 8vw, 120px);
   border-bottom: 1px solid var(--line);
-  background: rgba(245, 243, 236, 0.94);
+  background: var(--header-bg);
   backdrop-filter: blur(14px);
 }
 
@@ -65,6 +68,26 @@ nav a {
   padding: 8px 0;
   font-size: 0.91rem;
   font-weight: 600;
+}
+
+.theme-toggle {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.theme-toggle:hover {
+  background: var(--green);
+  color: var(--surface);
 }
 
 nav a::after {
@@ -234,7 +257,7 @@ section h2 {
 }
 
 .card:hover {
-  border-color: rgba(30, 85, 72, 0.45);
+  border-color: var(--card-hover-border);
   transform: translateY(-4px);
 }
 
@@ -249,7 +272,7 @@ section h2 {
 }
 
 #contact {
-  background: #e8eee5;
+  background: var(--contact-bg);
 }
 
 #contact > p {
@@ -282,6 +305,37 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #edf1e9;
+  --muted: #b2c0b8;
+  --paper: #17231f;
+  --surface: #202f29;
+  --header-bg: rgba(23, 35, 31, 0.94);
+  --contact-bg: #263831;
+  --green: #9bc5a8;
+  --green-dark: #12221c;
+  --line: rgba(237, 241, 233, 0.15);
+  --card-hover-border: rgba(155, 197, 168, 0.65);
+}
+
+[data-theme="dark"] .home {
+  background-color: #173b31;
+}
+
+[data-theme="dark"] .home > p {
+  color: rgba(255, 254, 250, 0.82);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  color: #12221c;
+}
+
 @keyframes arrive {
   from {
     opacity: 0;
@@ -306,6 +360,10 @@ a:focus-visible {
   header {
     min-height: 68px;
     padding: 0 20px;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
   }
 
   nav {
@@ -353,6 +411,12 @@ a:focus-visible {
     justify-content: center;
     gap: 4px;
     padding: 10px 20px;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 20px;
   }
 
   nav {
